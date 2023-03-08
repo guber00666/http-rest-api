@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"github.com/BurntSushi/toml"
-	apiserver2 "http-rest-api/internal/app/apiserver"
+	"http-rest-api/internal/app/apiserver"
 	"log"
 )
 
@@ -18,7 +18,7 @@ func init() {
 func main() {
 	flag.Parse()
 
-	config := apiserver2.NewConfig()
+	config := apiserver.NewConfig()
 
 	_, err := toml.DecodeFile(configPath, config)
 
@@ -26,7 +26,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	s := apiserver2.New(config)
+	s := apiserver.New(config)
 	if err := s.Start(); err != nil {
 		log.Fatal(err)
 	}
